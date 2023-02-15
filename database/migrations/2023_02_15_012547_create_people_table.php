@@ -21,6 +21,8 @@ return new class extends Migration
             $table->text('img')->nullable();
             $table->string('email')->unique();
             $table->string('phone', 20)->nullable();
+            $table->foreignId('user_id')->constrained('users')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
