@@ -77,7 +77,7 @@ class PersonController extends Controller
             ], 400);
         }
 
-        $updated = $person->fill($request->all())->save();
+        $updated = $person->update($request->all());
 
         if ($updated)
             return response()->json([

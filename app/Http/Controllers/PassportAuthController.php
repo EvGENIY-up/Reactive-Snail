@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class PassportAuthController extends Controller
 {
@@ -42,8 +41,10 @@ class PassportAuthController extends Controller
             'password' => $request->password
         ];
 
-        if (auth()->attempt($data)) {
-            $token = auth()->user()->createToken('Token')->accessToken;
+        if (Auth::attempt($data)) {
+            $id = Auth::id();
+            $user = User::find($id);
+            $token = $user->createToken('Token')->accessToken;
             return response()->json(['token' => $token], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
@@ -57,6 +58,8 @@ class PassportAuthController extends Controller
     {
         $token = $request->user()->token();
         $token->revoke();
+        Session::flush();
+        Auth::logout();
         $response = ['message' => 'You have been successfully logged out!'];
         return response($response, 200);
     }
