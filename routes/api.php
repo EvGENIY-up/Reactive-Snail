@@ -20,9 +20,10 @@ use App\Http\Controllers\API\ProductController;
 //    return $request->user();
 //});
 
-Route::post('register', [RegisterController::class, 'register']);
-Route::post('login', [RegisterController::class, 'login']);
+Route::post('register', [PassportAuthController::class, 'register']);
+Route::post('login', [PassportAuthController::class, 'login']);
+Route::get('logout', [PassportAuthController::class, 'logout']);
 
 Route::middleware('auth:api')->group(function () {
-    Route::resource('products', ProductController::class);
+    Route::resource('posts', PersonController::class);
 });

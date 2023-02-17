@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class PassportAuthController extends Controller
 {
@@ -13,9 +16,9 @@ class PassportAuthController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:4',
+            'name' => 'required|string|min:4|max:20',
             'email' => 'required|email',
-            'password' => 'required|min:8',
+            'password' => 'required|string|min:8',
         ]);
 
         $user = User::create([
@@ -24,7 +27,7 @@ class PassportAuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        $token = $user->createToken('LaravelAuthApp')->accessToken;
+        $token = $user->createToken('Token')->accessToken;
 
         return response()->json(['token' => $token], 200);
     }
@@ -40,10 +43,21 @@ class PassportAuthController extends Controller
         ];
 
         if (auth()->attempt($data)) {
-            $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
+            $token = auth()->user()->createToken('Token')->accessToken;
             return response()->json(['token' => $token], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
+    }
+
+    /**
+     * Logout
+     */
+    public function logout(Request $request)
+    {
+        $token = $request->user()->token();
+        $token->revoke();
+        $response = ['message' => 'You have been successfully logged out!'];
+        return response($response, 200);
     }
 }
