@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
+
 class PassportAuthController extends Controller
 {
     /**
@@ -58,8 +59,6 @@ class PassportAuthController extends Controller
     {
         $token = $request->user()->token();
         $token->revoke();
-        Session::flush();
-        Auth::logout();
         $response = ['message' => 'You have been successfully logged out!'];
         return response($response, 200);
     }

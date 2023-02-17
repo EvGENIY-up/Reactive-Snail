@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\RegisterController;
-use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\PersonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +20,10 @@ use App\Http\Controllers\API\ProductController;
 //    return $request->user();
 //});
 
-Route::post('register', [PassportAuthController::class, 'register']);
-Route::post('login', [PassportAuthController::class, 'login']);
-Route::get('logout', [PassportAuthController::class, 'logout']);
+Route::post('register', [PassportAuthController::class, 'register'])->name('register');
+Route::post('login', [PassportAuthController::class, 'login'])->name('login.post');
 
 Route::middleware('auth:api')->group(function () {
     Route::resource('posts', PersonController::class);
+    Route::post('logout', [PassportAuthController::class, 'logout']);
 });

@@ -15,9 +15,12 @@
 </template>
 
 <script>
+import authToken from '../authToken';
+
     export default {
         mounted() {
             console.log('Component mounted.')
+            console.log(Auth.checkToken())
         }
     }
 </script>
