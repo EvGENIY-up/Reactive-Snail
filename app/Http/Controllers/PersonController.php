@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Person;
+use App\Models\Car;
+use App\Models\Status;
 use Illuminate\Support\Facades\Auth;
 
 class PersonController extends Controller
@@ -68,6 +70,14 @@ class PersonController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required|string|min:2|max:20',
+            'surname' => 'required|string|min:2|max:25',
+            'patronym' => 'required|string|min:2|max:25',
+            'email' => 'required|email|max:20',
+            'phone' => 'nullable|string|unique:people|max:20',
+        ]);
+
         $person = Person::find($id);
 
         if (!$person) {
@@ -77,7 +87,15 @@ class PersonController extends Controller
             ], 400);
         }
 
-        $updated = $person->update($request->all());
+        $editPerson = [
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'patronym' => $request->description,
+            'email' => $request->author_id,
+            'phone' => $request->category_id,
+        ];
+
+        $updated = $person->update($editPerson);
 
         if ($updated)
             return response()->json([
