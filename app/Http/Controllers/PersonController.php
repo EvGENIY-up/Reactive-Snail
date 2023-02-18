@@ -20,7 +20,7 @@ class PersonController extends Controller
 
     public function show($id)
     {
-        $person = Person::find($id);
+        $person = Person::with('person')->with('status')->find($id);
 
         if (!$person) {
             return response()->json([
