@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::post('register', [PassportAuthController::class, 'register'])->name('regi
 Route::post('login', [PassportAuthController::class, 'login'])->name('login.post');
 
 Route::middleware('auth:api')->group(function () {
-    Route::resource('posts', PersonController::class);
+    Route::resource('people', PersonController::class);
+    Route::resource('cars', CarController::class);
     Route::post('logout', [PassportAuthController::class, 'logout']);
 });
