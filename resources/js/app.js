@@ -6,7 +6,7 @@ const app = createApp({});
 
 import App from './components/App.vue';
 import Auth from './authToken.js';
-app.provide.auth = Auth;
+app.provide('$Auth',Auth);
 app.component('app-component', App);
 
 

@@ -8,33 +8,34 @@
         </div>
     </div>
     <div class="right-content d-flex mt-4">
-        <p v-if="user" class="login-name">{{user}}</p>
+        <p v-if="isUser" class="login-name">{{$Auth.user.name}}</p>
         <template v-else>
-            <button type="button" class="btn btn-primary mt-2 in-button" data-bs-toggle="modal" data-bs-target="#authModal">Вход</button>
+            <button type="button" class="btn btn-primary mt-2 in-button" data-bs-toggle="modal" data-bs-target="#login">Вход</button>
             <button type="button" class="btn btn-secondary mt-2 reg-button" data-bs-toggle="modal" data-bs-target="#regisModal">Регистрация</button>
         </template>
-        <button v-if="user" type="button" class="btn btn-warning mt-2 out-button" data-bs-toggle="modal" data-bs-target="#authOutModal">Выход</button>
+        <button v-if="isUser" type="button" class="btn btn-warning mt-2 out-button" data-bs-toggle="modal" data-bs-target="#authOutModal">Выход</button>
     </div>
+    <Login/>
 </div>
 </template>
 
 <script>
-
-import axios from "axios"
+import Login from './Auth/Login.vue'
 export default {
-    name: "HeaderComponent",
-    props: [
-        'user',
-        'admin'
-    ],
+    name: "Header",
+    inject: ['$Auth'],
     components: {
+        Login,
     },
-    methods: {
-        
+    methods: {  
     },
     mounted() {
-        console.log(this.user);
     },
+    computed: {
+        isUser() {
+            return this.$Auth.check()
+        }
+    }
 }
 </script>
 

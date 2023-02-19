@@ -3,23 +3,28 @@ import axios from 'axios';
 class Auth {
     constructor() {
         this.token = window.localStorage.getItem('token');
+        let userData = window.localStorage.getItem('user');
+        this.user = userData ? JSON.parse(userData) : null;
         if (this.token) {
              axios.defaults.headers.common['Authorization'] = 'Bearer' + this.token;
         }
     }
 
-    saveToken(token) {
+    login(token, user) {
         this.token = token;
-        window.localStorage.setItem('token', this.token);
-        axios.defaults.headers.common['Authorization'] = 'Bearer' + this.token;
+        this.user = user;
+        window.localStorage.setItem('token', token);
+        window.localStorage.setItem('user', JSON.stringify(user));
+        axios.defaults.headers.common['Authorization'] = 'Bearer' + token;
     }
     
-    deleteToken() {
+    logaout() {
         window.localStorage.removeItem('token');
         this.token = null;
+        this.user = null;
     }
 
-     checkToken() {
+     check () {
        return !! this.token
     }
 }

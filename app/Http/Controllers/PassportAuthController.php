@@ -46,7 +46,7 @@ class PassportAuthController extends Controller
             $id = Auth::id();
             $user = User::find($id);
             $token = $user->createToken('Token')->accessToken;
-            return response()->json(['token' => $token], 200);
+            return response()->json(['token' => $token, 'user' => $user], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
