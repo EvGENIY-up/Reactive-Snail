@@ -1,11 +1,12 @@
 import './bootstrap';
-import { createApp, Vue } from 'vue';
+import { createApp } from 'vue';
+import router from './index';
 
 const app = createApp({});
 
 import App from './components/App.vue';
-import authToken from '. /authToken';
-Vue.prototype.Auth = authToken;
+import Auth from './authToken.js';
+app.provide.auth = Auth;
 app.component('app-component', App);
 
 

@@ -21,6 +21,7 @@
 <body>
     <div id="app">
         <main class="wrapper">
+            @yield('content')
         </main>
     </div>
 </body>
