@@ -13,19 +13,22 @@
             <button type="button" class="btn btn-primary mt-2 in-button" data-bs-toggle="modal" data-bs-target="#login">Вход</button>
             <button type="button" class="btn btn-secondary mt-2 reg-button" data-bs-toggle="modal" data-bs-target="#regisModal">Регистрация</button>
         </template>
-        <button v-if="isUser" type="button" class="btn btn-warning mt-2 out-button" data-bs-toggle="modal" data-bs-target="#authOutModal">Выход</button>
+        <button v-if="isUser" type="button" class="btn btn-warning mt-2 out-button" data-bs-toggle="modal" data-bs-target="#logout">Выход</button>
     </div>
     <Login/>
+    <Logout/>
 </div>
 </template>
 
 <script>
 import Login from './Auth/Login.vue'
+import Logout from './Auth/Logout.vue'
 export default {
     name: "Header",
     inject: ['$Auth'],
     components: {
         Login,
+        Logout,
     },
     methods: {  
     },

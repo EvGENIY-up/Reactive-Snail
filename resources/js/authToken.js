@@ -18,8 +18,9 @@ class Auth {
         axios.defaults.headers.common['Authorization'] = 'Bearer' + token;
     }
     
-    logaout() {
+    logout() {
         window.localStorage.removeItem('token');
+        window.localStorage.removeItem('user');
         this.token = null;
         this.user = null;
     }
