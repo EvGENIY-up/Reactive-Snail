@@ -8,37 +8,39 @@
         </div>
     </div>
     <div class="right-content d-flex mt-4">
-        <p v-if="isUser" class="login-name">{{$Auth.user.name}}</p>
+        <p v-if="isUser()" class="login-name">{{$Auth.user.name}}</p>
         <template v-else>
             <button type="button" class="btn btn-primary mt-2 in-button" data-bs-toggle="modal" data-bs-target="#login">Вход</button>
-            <button type="button" class="btn btn-secondary mt-2 reg-button" data-bs-toggle="modal" data-bs-target="#regisModal">Регистрация</button>
+            <button type="button" class="btn btn-secondary mt-2 reg-button" data-bs-toggle="modal" data-bs-target="#register">Регистрация</button>
         </template>
-        <button v-if="isUser" type="button" class="btn btn-warning mt-2 out-button" data-bs-toggle="modal" data-bs-target="#logout">Выход</button>
+        <button  v-if="isUser()" type="button" class="btn btn-warning mt-2 out-button" data-bs-toggle="modal" data-bs-target="#logout">Выход</button>
     </div>
-    <Login/>
-    <Logout/>
+    <Login @login="$forceUpdate"/>
+    <Logout @logout="$forceUpdate"/>
+    <Register @register="$forceUpdate"/>
 </div>
 </template>
 
 <script>
 import Login from './Auth/Login.vue'
 import Logout from './Auth/Logout.vue'
+import Register from './Auth/Register.vue'
 export default {
     name: "Header",
     inject: ['$Auth'],
     components: {
         Login,
         Logout,
+        Register,
     },
     methods: {  
+          isUser() {
+            return this.$Auth.check()
+        }
     },
     mounted() {
     },
-    computed: {
-        isUser() {
-            return this.$Auth.check()
-        }
-    }
+   
 }
 </script>
 

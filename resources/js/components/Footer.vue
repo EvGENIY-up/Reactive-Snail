@@ -8,8 +8,5 @@
 <script>
 export default {
         name: "Footer",
-        mounted() {
-            console.log('Component mounted.')
-        }
     }
 </script>

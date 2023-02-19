@@ -27,9 +27,7 @@ class PassportAuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        $token = $user->createToken('Token')->accessToken;
-
-        return response()->json(['token' => $token], 200);
+        return response()->json(['status' => true, 'message' => 'User successfully register.'], 200);
     }
 
     /**

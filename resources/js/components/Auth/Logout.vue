@@ -10,7 +10,7 @@
                 Вы уверены, что хоите выйти c аккаунта?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Нет</button>
+                <button ref="closeButton" type="button" class="btn btn-primary" data-bs-dismiss="modal">Нет</button>
                 <button @click="logOut()" type="submit" class="btn btn-danger">Да</button>
             </div>
             </div>
@@ -25,7 +25,9 @@ export default {
         logOut() {
             axios.get('/api/logout').then(({data}) => {
                     this.$Auth.logout(); //reset local storage
-                    this.$router.push('/login');
+                    this.$router.push('/');
+                    this.$emit('logout');       
+                    this.$refs.closeButton.click();
                 })
                 .catch((error) => {
                     console.log(error);

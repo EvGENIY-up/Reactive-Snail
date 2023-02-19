@@ -13,8 +13,5 @@ export default {
             Header,
             Footer,
         },
-    mounted() {
-        console.log('Component mounted.')
-    },
     }
 </script>

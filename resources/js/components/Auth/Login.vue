@@ -21,7 +21,7 @@
                 </div>
                 <div class="modal-footer">
                     <button @click.prevent="defineUser" type="submit" class="btn btn-primary">Отправить</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button ref="closeButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                 </div>
             </form>
             </div>
@@ -49,8 +49,10 @@ export default {
             }).then(({data}) => {
                 this.$Auth.login(data.token, data.user);
                 this.$router.push('/');
+                this.$emit('login');
+                this.$refs.closeButton.click();
             }).catch((error) => {
-                console.log(error.data.message)
+                console.log(error)
             })
         },
     }
