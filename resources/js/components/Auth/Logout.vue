@@ -23,10 +23,10 @@ export default {
     inject: ['$Auth'],
     methods: {
         logOut() {
-            axios.get('/api/logout').then(({data}) => {
+            axios.post('/api/logout').then(({data}) => {
                     this.$Auth.logout(); //reset local storage
                     this.$router.push('/');
-                    this.$emit('logout');       
+                    this.$emit('logout');
                     this.$refs.closeButton.click();
                 })
                 .catch((error) => {

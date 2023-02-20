@@ -29,5 +29,5 @@ Route::get('states', [HomeController::class, 'index'])->name('get.states');
 Route::middleware('auth:api')->group(function () {
     Route::resource('people', PersonController::class);
     Route::resource('cars', CarController::class);
-    Route::post('logout', [PassportAuthController::class, 'logout']);
+    Route::post('logout', [PassportAuthController::class, 'logout'])->name('logout.post');
 });

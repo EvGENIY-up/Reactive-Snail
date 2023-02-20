@@ -1,5 +1,12 @@
 <template>
     <div class="container">
+        <div class="d-flex justify-content-between">
+            <h2 class="content__title mt-3 my-4 px-3">Таблица учёта траспорта</h2>
+            <div class="d-flex">
+                <p v-if="isUser()" class="mt-2 cu-p fs-4">Водители</p>
+                <p v-if="isUser()" class="mt-2 px-3 cu-p fs-4">Транспорт</p>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <table class="table">
@@ -30,6 +37,7 @@
 <script>
 export default {
     name: "Home",
+    inject: ['$Auth'],
     data() {
         return {
                 cars: [],
@@ -45,6 +53,9 @@ export default {
             }).catch((error) => {
                 console.log(error)
             })
+        },
+         isUser() {
+            return this.$Auth.check()
         }     
     }
 }
