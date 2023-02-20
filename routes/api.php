@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ use App\Http\Controllers\CarController;
 
 Route::post('register', [PassportAuthController::class, 'register'])->name('register');
 Route::post('login', [PassportAuthController::class, 'login'])->name('login.post');
+Route::get('states', [HomeController::class, 'index'])->name('get.states');
 
 Route::middleware('auth:api')->group(function () {
     Route::resource('people', PersonController::class);
