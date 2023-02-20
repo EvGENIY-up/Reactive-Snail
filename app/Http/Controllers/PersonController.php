@@ -43,18 +43,22 @@ class PersonController extends Controller
             'name' => 'required|string|min:2|max:20',
             'surname' => 'required|string|min:2|max:25',
             'patronym' => 'required|string|min:2|max:25',
-            'email' => 'required|email|max:20',
+            'img' => 'nullable|string',
+            'email' => 'required|email|',
             'phone' => 'nullable|string|unique:people|max:20',
         ]);
 
-        $person = new Person();
-        $person->name = $request->name;
-        $person->surname = $request->surname;
-        $person->patronym = $request->patronym;
-        $person->email = $request->email;
-        $person->phone = $request->phone;
-        $person->title = $request->title;
-        $person->user_id = Auth::user()->id;
+        $data = [
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'patronym' => $request->patronym,
+            'img' => $request->img,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'user_id' => Auth::user()->id,
+        ];
+
+        $person = new Person($data);
 
         if ($person->save())
             return response()->json([

@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between">
             <h2 class="content__title mt-3 my-4 px-3">Таблица учёта траспорта</h2>
             <div class="d-flex">
-                <p v-if="isUser()" class="mt-2 cu-p fs-4">Водители</p>
+                <router-link to="/person"><p v-if="isUser()" class="mt-2 cu-p fs-4">Водители</p></router-link>
                 <p v-if="isUser()" class="mt-2 px-3 cu-p fs-4">Транспорт</p>
             </div>
         </div>
