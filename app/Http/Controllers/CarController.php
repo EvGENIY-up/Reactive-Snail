@@ -71,8 +71,8 @@ class CarController extends Controller
         $this->validate($request, [
             'name' => 'required|string|min:2|max:100',
             'type' => 'required|string|min:2|max:100',
-            'status_id' => 'required|integer|exists:authors,id',
-            'person_id' => 'required|integer|exists:authors,id',
+            'status_id' => 'required|integer|exists:statuses,id',
+            'person_id' => 'required|integer|exists:people,id',
         ]);
 
         $car = Car::find($id);
@@ -85,11 +85,10 @@ class CarController extends Controller
         }
 
         $editCar = [
-            'name' => $request->title,
-            'type' => $request->year,
-            'description' => $request->description,
-            'author_id' => $request->author_id,
-            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'type' => $request->type,
+            'status_id' => $request->status_id,
+            'person_id' => $request->person_id,
         ];
 
         $updated = $car->update($editCar);
@@ -97,7 +96,7 @@ class CarController extends Controller
         if ($updated)
             return response()->json([
                 'success' => true
-            ]);
+            ], 200);
         else
             return response()->json([
                 'success' => false,

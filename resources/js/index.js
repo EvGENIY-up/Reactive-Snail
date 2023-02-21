@@ -7,6 +7,7 @@ import CarCreate from "./components/Car/Сreate.vue"
 import PersonRead from "./components/Person/Read.vue"
 import PersonUpdate from "./components/Person/Update.vue"
 import CarRead from "./components/Car/Read.vue"
+import CarUpdate from "./components/Car/Update.vue"
 
 const routes = [
     {
@@ -33,6 +34,11 @@ const routes = [
         path: "/car/:id",
         name: "carRead",
         component: CarRead,
+    },
+    {
+        path: "/car/update/:id",
+        name: "carUpdate",
+        component: CarUpdate,
     },
     {
         path: "/person/create",

@@ -14,7 +14,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="addBookYear" class="form-label">Тип</label>
-                        <input v-model="surname" type="text" class="form-control" required>
+                        <input v-model="type" type="text" class="form-control" required>
                         <div class="form-text" >Обязательное поле</div>
                     </div>
                     <div class="mb-3">
@@ -68,10 +68,12 @@ export default {
     },
     methods: {
         getCar(id) {
-            axios.get(`/api/car/${id}`).then((response) => {
+            axios.get(`/api/cars/${id}`).then((response) => {
                 this.car = response.data.data
                 this.name = this.car.name
                 this.type = this.car.type
+                this.person_id = this.car.person.id
+                this.status_id = this.car.status.id
             }).catch((error) => {
                 console.log(error)
             })
