@@ -6,10 +6,10 @@
             <h3 class="my-4">Транспорт</h3>
             <p>Название: {{car.name}}</p>
             <p>Тип: {{car.type}}</p>
-            <p>ФИО ответсвенного лица: {{car.person.name + ' ' + car.person.surname + ' ' + car.person.patronym}}</p>
-            <p>Номер телефона: {{car.person.phone}}</p>
-            <p>Email адресс: {{car.person.email}}</p>
-            <p>Статус машины: {{car.status.name}}</p>
+            <p>ФИО ответсвенного лица: {{name + ' ' + surname+ ' ' + patronym}}</p>
+            <p>Номер телефона: {{phone}}</p>
+            <p>Email адресс: {{email}}</p>
+            <p>Статус машины: {{status}}</p>
         </div>
     </div>
      <div class="change-book d-flex justify-content-end mx-3">
@@ -21,15 +21,22 @@
 </template>
 <script>
 
-//import Delete from "./Car.vue"
+import Delete from "./Delete.vue"
 export default {
     name: "CarRead",
     components: {
-        //Delete,
+        Delete,
     },
     data() {
         return {
             car: {},
+            name:'',
+            surname:'',
+            patronym: '',
+            phone: '',
+            email: '',
+            status: '',
+            
         }
     },
     mounted() {
@@ -39,7 +46,12 @@ export default {
         getPerson(id) {
             axios.get(`/api/cars/${id}`).then((response) => {
                 this.car = response.data.data
-                console.log(response.data.data)
+                this.name = this.car.person.name
+                this.surname = this.car.person.surname
+                this.patronym = this.car.person.patronym
+                this.email = this.car.person.email
+                this.phone = this.car.person.phone
+                this.status =  this.car.status.name
             }).catch((error) => {
                 console.log(error)
             })

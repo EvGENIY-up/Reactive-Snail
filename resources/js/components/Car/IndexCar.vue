@@ -5,7 +5,7 @@
     <router-link to="/car/create"><button type="button" class="btn btn-secondary my-2 mx-2">Добавить машину +</button></router-link>
 </div>
 <div class="d-flex flex-wrap justify-content-center mx-3">
-    <Item v-for="car in cars" :name="car.name" :id="car.id" :type="car.type" :status="car.status.name" :img="car.img" class="cu-p" />
+    <Item @click="readCar(car.id)" v-for="car in cars" :name="car.name" :id="car.id" :type="car.type" :status="car.status.name" :img="car.img" class="cu-p" />
 </div>
 </div>
 </template>
@@ -37,7 +37,11 @@ export default {
         },
          isUser() {
             return this.$Auth.check()
-        }   
+        },
+        readCar(id) {
+            console.log(id)
+            this.$router.push(`/car/${id}`)
+        }      
     },
    
 }
