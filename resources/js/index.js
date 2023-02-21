@@ -4,6 +4,7 @@ import IndexPerson from "./components/Person/IndexPerson.vue"
 import IndexCar from './components/Car/IndexCar.vue'
 import PersonCreate from "./components/Person/Сreate.vue"
 import CarCreate from "./components/Car/Сreate.vue"
+import PersonShow from "./components/Person/Show.vue"
 
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
         path: "/car/create",
         name: "carCreate",
         component: CarCreate,
+    },
+     {
+        path: "/person/:id",
+        name: "personShow",
+        component: PersonShow,
     },
 ];
 
