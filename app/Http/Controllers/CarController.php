@@ -34,7 +34,7 @@ class CarController extends Controller
         return response()->json([
             'success' => true,
             'data' => $person->toArray()
-        ], 400);
+        ], 200);
     }
 
     public function store(Request $request)

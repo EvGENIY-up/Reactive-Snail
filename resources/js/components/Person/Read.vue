@@ -22,7 +22,7 @@
 
 import Delete from "./Delete.vue"
 export default {
-    name: "PersonShow",
+    name: "PersonRead",
     components: {
         Delete,
     },

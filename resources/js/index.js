@@ -4,8 +4,9 @@ import IndexPerson from "./components/Person/IndexPerson.vue"
 import IndexCar from './components/Car/IndexCar.vue'
 import PersonCreate from "./components/Person/Сreate.vue"
 import CarCreate from "./components/Car/Сreate.vue"
-import PersonShow from "./components/Person/Show.vue"
+import PersonRead from "./components/Person/Read.vue"
 import PersonUpdate from "./components/Person/Update.vue"
+import CarRead from "./components/Car/Read.vue"
 
 const routes = [
     {
@@ -24,19 +25,24 @@ const routes = [
         component: IndexCar,
     },
     {
-        path: "/person/create",
-        name: "personCreate",
-        component: PersonCreate,
-    },
-    {
         path: "/car/create",
         name: "carCreate",
         component: CarCreate,
     },
     {
+        path: "/car/:id",
+        name: "carRead",
+        component: CarRead,
+    },
+    {
+        path: "/person/create",
+        name: "personCreate",
+        component: PersonCreate,
+    },
+    {
         path: "/person/:id",
-        name: "personShow",
-        component: PersonShow,
+        name: "personRead",
+        component: PersonRead,
     },
     {
         path: "/person/update/:id",
