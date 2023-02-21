@@ -11,7 +11,7 @@
                 <p class="fs-5 d-flex justify-content-center mt-2" :class="{'text-danger': hasError, 'text-success': noError}">{{message}}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Нет</button>
+                <button ref="closeButton" type="button" class="btn btn-primary" data-bs-dismiss="modal">Нет</button>
                 <button @click="deletePerson()" type="submit" class="btn btn-danger">Да</button>
             </div>
             </div>
@@ -36,12 +36,16 @@ export default {
            axios.delete(`/api/people/${this.id}`).then(res => {
                 if (res.status === 200) {
                     this.message = "Вы успешно удалили водителя"
-                      this.$router.push('/person');
+                    this.$emit('deletePerson');
+                    this.$refs.closeButton.click();
+                    this.$router.push('/person');
                 }
                 else {
                     this.message = "Произошла ошибка при удалении"
                 }
-            })
+           }).then(
+                
+            )
         }
     }
 }

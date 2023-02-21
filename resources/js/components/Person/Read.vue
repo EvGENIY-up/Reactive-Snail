@@ -16,7 +16,7 @@
         <button @click="goChange(person.id)" type="button" class="btn btn-primary">Редактировать</button>
         <button type="button" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deletePerson">Удалить</button>
     </div>
-    <Delete :id="person.id"/>
+    <Delete @deletePerson="$forceUpdate" :id="person.id"/>
 </template>
 <script>
 
