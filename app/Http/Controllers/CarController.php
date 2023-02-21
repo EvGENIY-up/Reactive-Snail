@@ -43,16 +43,15 @@ class CarController extends Controller
             'name' => 'required|string|min:2|max:100',
             'type' => 'required|string|min:2|max:100',
             'img' => 'nullable|string|',
-            'status_id' => 'required|integer|exists:authors,id',
-            'person_id' => 'nullable|integer|exists:authors,id',
+            'person_id' => 'nullable|integer|exists:people,id',
         ]);
 
         $car = new Car();
         $car->name = $request->name;
         $car->type = $request->type;
         $car->img = $request->img;
-        $car->status_id = $request->email;
         $car->person_id = $request->person_id;
+        $car->status_id = 1;
         $car->user_id = Auth::user()->id;
 
         if ($car->save())

@@ -13,9 +13,16 @@
                         <div class="form-text" >Обязательное поле</div>
                     </div>
                     <div class="mb-3">
-                        <label for="addBookYear" class="form-label">Тип транспорта</label>
-                        <input v-model="surname" type="text" class="form-control" required>
+                        <label class="form-label">Тип транспорта</label>
+                        <input v-model="type" type="text" class="form-control" required>
                         <div class="form-text" >Обязательное поле</div>
+                    </div>
+                     <div class="mb-3">
+                        <label class="form-label">Привяжите водителя к траснпорту</label>
+                        <select v-model="person_id" class="form-select" required>
+                            <option v-for=" driver in drivers" :value ="driver.id">{{driver.name + " " + driver.surname}}</option>  
+                        </select>
+                        <div class="form-text">Обязательное поле</div>
                     </div>
                     <div class="large-12 medium-12 small-12 cell">
                         <label class="d-flex">
@@ -47,10 +54,9 @@ export default {
                 file: null,
             },
             name: '',
-            surname: '',
-            patronym: '',
-            email: '',
-            phone: '',
+            type: '',
+            person_id: null,
+            drivers: [],
             message: '',
             file: '',
             img: '',
@@ -58,7 +64,18 @@ export default {
             hasError: false,
         }
     },
+    mounted() {
+        this.getAllDrivers()
+    },
     methods: {
+         getAllDrivers() {
+            axios.get('/api/people').then((response) => {
+                this.drivers = response.data.data
+                console.log(response.data.data);
+            }).catch((error) => {
+                console.log(error)
+            })
+        },
         convertFileToLink(file) {
             const reader = new FileReader();
             reader.onload = (event) => {
@@ -80,11 +97,9 @@ export default {
         createPerson() {
             axios.post('/api/cars', {
                 name: this.name,
-                surname: this.surname,
-                patronym: this.patronym,
+                type: this.type,
                 img: this.formData.linkFileBase64,
-                email: this.email,
-                phone: this.phone,
+                person_id: this.person_id,
             }).then(response => {
                 if (response.status === 200) {
                     this.noError = true

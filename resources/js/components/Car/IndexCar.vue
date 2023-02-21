@@ -2,7 +2,7 @@
 <div class="content mx-3">
 <div class="first d-flex justify-content-between">
     <h2 class="content__title mt-2 mx-2">Машины</h2>
-    <button type="button" class="btn btn-secondary my-2 mx-2">Добавить машину +</button>
+    <router-link to="/car/create"><button type="button" class="btn btn-secondary my-2 mx-2">Добавить машину +</button></router-link>
 </div>
 <div class="d-flex flex-wrap justify-content-center mx-3">
     <Item v-for="car in cars" :name="car.name" :id="car.id" :type="car.type" :status="car.status.name" :img="car.img" class="cu-p" />

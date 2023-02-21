@@ -5,9 +5,9 @@
     <h5>Машина</h5>
         <div className="d-flex">
             <div className="d-flex flex-column">
-                <span>Имя: {{name}}</span>
-                <span>Фамилия: {{type}}</span>
-                <span>Отчество: {{status}}</span>
+                <span>Название: {{name}}</span>
+                <span>Тип: {{type}}</span>
+                <span>Статус: {{status}}</span>
             </div>
         </div>
 </div>
