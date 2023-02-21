@@ -1,12 +1,13 @@
 <template>
 <div class="content mx-3">
 <div class="first d-flex justify-content-between">
-    <h2 class="content__title mt-2 mx-2">Машины</h2>
+    <h2 class="content__title mt-2 mx-2">Машины:</h2>
     <router-link to="/car/create"><button type="button" class="btn btn-secondary my-2 mx-2">Добавить машину +</button></router-link>
 </div>
-<div class="d-flex flex-wrap justify-content-center mx-3">
+<div class="d-flex flex-wrap mx-1 ">
     <Item @click="readCar(car.id)" v-for="car in cars" :name="car.name" :id="car.id" :type="car.type" :status="car.status.name" :img="car.img" class="cu-p" />
 </div>
+<button type="button" @click="goBack" class="btn btn-secondary mx-2 my-3 cu-p">Вернуться назад</button>
 </div>
 </template>
 
@@ -30,7 +31,6 @@ export default {
         getAllCars() {
             axios.get('/api/cars').then((response) => {
                 this.cars = response.data.data
-                console.log(response.data.data);
             }).catch((error) => {
                 console.log(error)
             })
@@ -39,9 +39,11 @@ export default {
             return this.$Auth.check()
         },
         readCar(id) {
-            console.log(id)
             this.$router.push(`/car/${id}`)
-        }      
+        },
+        goBack() {
+            this.$router.push('/')
+        },      
     },
    
 }

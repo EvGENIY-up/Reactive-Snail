@@ -1,6 +1,6 @@
 <template :value="id">
 <div class="item" :value="id">
-    <img  v-if="!img" :value="id" src="img/md.png" width="170" height="96" alt="Обложка" class="mini-book" >
+    <img  v-if="!img" :value="id" src="img/driver.png" width="170" height="96" alt="Обложка" class="mini-book" >
     <img  v-else :src="img" :value="id" width="170" height="96" alt="Обложка" class="mini-book">
     <h5 :value="id">Водитель</h5>
         <div  className="d-flex" :value="id">

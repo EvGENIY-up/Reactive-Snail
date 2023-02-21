@@ -1,10 +1,9 @@
 <template>
     <div class="book-content d-flex mx-4 my-4">
-     <img v-if="!car.img" src="/img/book-img.png" width="370" height="600" alt="Обложка транспорта" class="book-content__img">
+     <img v-if="!car.img" src="/img/car.jpg" width="370" height="600" alt="Обложка транспорта" class="book-content__img">
         <img v-else :src="car.img" width="370" height="600" alt="Фото транспорта" class="book-content__img">
         <div class="content-block d mx-5 my-5 ">
-            <h3 class="my-4">Транспорт</h3>
-            <p>Название: {{car.name}}</p>
+            <h3 class="my-4">{{car.name}}</h3>
             <p>Тип: {{car.type}}</p>
             <p>ФИО ответсвенного лица: {{name + ' ' + surname+ ' ' + patronym}}</p>
             <p>Номер телефона: {{phone}}</p>
