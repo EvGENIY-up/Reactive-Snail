@@ -11,10 +11,20 @@
             <p>Email адресс: {{person.email}}</p>
         </div>
     </div>
+     <div class="change-book d-flex justify-content-end mx-3">
+        <button type="button" class="btn btn-primary">Редактировать</button>
+        <button type="button" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deletePerson">Удалить</button>
+    </div>
+    <Delete :id="person.id"/>
 </template>
 <script>
+
+import Delete from "./Delete.vue"
 export default {
     name: "PersonShow",
+    components: {
+        Delete,
+    },
     data() {
         return {
             person: {},
