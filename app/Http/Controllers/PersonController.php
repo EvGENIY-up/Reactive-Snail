@@ -78,7 +78,7 @@ class PersonController extends Controller
             'name' => 'required|string|min:2|max:20',
             'surname' => 'required|string|min:2|max:25',
             'patronym' => 'required|string|min:2|max:25',
-            'email' => 'required|email|max:20',
+            'email' => 'required|email',
             'phone' => 'nullable|string|unique:people|max:20',
         ]);
 
@@ -94,9 +94,9 @@ class PersonController extends Controller
         $editPerson = [
             'name' => $request->name,
             'surname' => $request->surname,
-            'patronym' => $request->description,
-            'email' => $request->author_id,
-            'phone' => $request->category_id,
+            'patronym' => $request->patronym,
+            'email' => $request->email,
+            'phone' => $request->phone,
         ];
 
         $updated = $person->update($editPerson);
@@ -104,7 +104,7 @@ class PersonController extends Controller
         if ($updated)
             return response()->json([
                 'success' => true
-            ]);
+            ], 200);
         else
             return response()->json([
                 'success' => false,
