@@ -1,13 +1,13 @@
-<template>
-<div class="item">
-    <img  v-if="!img" src="img/md.png" width="170" height="96" alt="Обложка" class="mini-book" >
-    <img  v-else :src="img" width="170" height="96" alt="Обложка" class="mini-book">
-    <h5>Водитель</h5>
-        <div className="d-flex">
-            <div className="d-flex flex-column">
-                <span>Имя: {{name}}</span>
-                <span>Фамилия: {{surname}}</span>
-                <span>Отчество: {{patronym}}</span>
+<template :value="id">
+<div class="item" :value="id">
+    <img  v-if="!img" :value="id" src="img/md.png" width="170" height="96" alt="Обложка" class="mini-book" >
+    <img  v-else :src="img" :value="id" width="170" height="96" alt="Обложка" class="mini-book">
+    <h5 :value="id">Водитель</h5>
+        <div  className="d-flex" :value="id">
+            <div :value="id" className="d-flex flex-column">
+                <span :value="id">Имя: {{name}}</span>
+                <span :value="id">Фамилия: {{surname}}</span>
+                <span :value="id">Отчество: {{patronym}}</span>
             </div>
         </div>
 </div>

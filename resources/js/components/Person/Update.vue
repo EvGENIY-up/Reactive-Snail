@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <p @click="goBack" class="mt-2 cu-p fs-5">Вернуться назад</p>
+                    <button type="button" @click="goBack" class="btn btn-secondary solid cu-p">Вернуться назад</button>
                     <button @click.prevent="updatePerson" type="submit" class="btn btn-primary py-1">Редактировать</button>
                 </div>
             </form>

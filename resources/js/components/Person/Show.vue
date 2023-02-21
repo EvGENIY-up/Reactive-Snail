@@ -12,7 +12,8 @@
         </div>
     </div>
      <div class="change-book d-flex justify-content-end mx-3">
-        <button type="button" class="btn btn-primary">Редактировать</button>
+        <button type="button" @click="goBack" class="btn btn-secondary mx-5 solid cu-p">Вернуться назад</button>
+        <button @click="goChange(person.id)" type="button" class="btn btn-primary">Редактировать</button>
         <button type="button" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deletePerson">Удалить</button>
     </div>
     <Delete :id="person.id"/>
@@ -37,11 +38,16 @@ export default {
         getPerson(id) {
             axios.get(`/api/people/${id}`).then((response) => {
                 this.person = response.data.data
-                console.log(response.data.data);
             }).catch((error) => {
                 console.log(error)
             })
         },
+        goChange(id) {
+            this.$router.push(`/person/update/${id}`)
+        },
+        goBack() {
+            window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+        }   
     }
 }
 </script>

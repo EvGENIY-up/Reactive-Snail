@@ -5,7 +5,7 @@
     <router-link to="/person/create"><button type="button" class="btn btn-secondary my-2 mx-2">Добавить водителя +</button></router-link>
 </div>
 <div class="d-flex flex-wrap justify-content-center mx-3">
-    <Item v-for="driver in drivers" :name="driver.name" :id="driver.id" :surname="driver.surname" :patronym="driver.patronym" :img="driver.img" class="cu-p" />
+    <Item @click="readPerson(driver.id)" :value="driver.id" v-for="driver in drivers" :name="driver.name" :id="driver.id" :surname="driver.surname" :patronym="driver.patronym" :img="driver.img" class="cu-p" />
 </div>
 </div>
 </template>
@@ -30,13 +30,16 @@ export default {
         getAllDrivers() {
             axios.get('/api/people').then((response) => {
                 this.drivers = response.data.data
-                console.log(response.data.data);
             }).catch((error) => {
                 console.log(error)
             })
         },
          isUser() {
             return this.$Auth.check()
+        },
+        readPerson(id) {
+            console.log(id)
+            this.$router.push(`/person/${id}`)
         }   
     },
    
