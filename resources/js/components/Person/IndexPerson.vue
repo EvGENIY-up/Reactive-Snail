@@ -15,7 +15,6 @@
 import Item from "./Item.vue"
 export default {
     name: "IndexPerson",
-    inject: ['$Auth'],
     components: {
         Item,
     },
