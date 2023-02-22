@@ -38,8 +38,6 @@ export default {
             return this.$Auth.check()
         }
     },
-    mounted() {
-    },
    
 }
 </script>
